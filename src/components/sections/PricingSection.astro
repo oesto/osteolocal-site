@@ -1,0 +1,45 @@
+---
+import { t } from '../../utils/i18n';
+import PricingCardLifetime from './PricingCardLifetime.astro';
+import PricingCardLOA from './PricingCardLOA.astro';
+
+interface Props {
+  lang: 'fr' | 'en';
+}
+
+const { lang } = Astro.props;
+---
+
+<section id="tarifs" class="py-24 md:py-32 section-light">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="section-divider"></div>
+      <h2 class="text-[28px] md:text-[44px] font-bold leading-[1.08]" style="font-family: var(--font-display); color: var(--color-text-heading);">
+        {t(lang, 'pricing.title')}
+        <span style="color: var(--color-primary-600);"> {t(lang, 'pricing.titleAccent')}</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-14">
+      <div data-animate="scale-up" style="--stagger-index: 0;">
+        <PricingCardLifetime lang={lang} />
+      </div>
+      <div data-animate="scale-up" style="--stagger-index: 1;">
+        <PricingCardLOA lang={lang} />
+      </div>
+    </div>
+
+    <!-- LOA explainer + trial callout -->
+    <div data-animate="fade-up" class="max-w-2xl mx-auto space-y-6">
+      <blockquote class="rounded-2xl p-7 text-sm leading-[1.8] italic" style="background: var(--color-warm-50); border-left: 3px solid var(--color-primary-500); color: var(--color-text-body);">
+        {t(lang, 'pricing.loaExplainer')}
+      </blockquote>
+
+      <div class="text-center rounded-2xl p-8" style="background: linear-gradient(135deg, var(--color-primary-50), #e6f7f4); border: 1px solid var(--color-primary-200);">
+        <p class="text-xl font-bold" style="color: var(--color-primary-700); font-family: var(--font-display);">
+          {t(lang, 'pricing.trialCallout')}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

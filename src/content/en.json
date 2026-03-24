@@ -1,0 +1,336 @@
+{
+  "meta": {
+    "title": "OsteoLocal — Osteopathy Practice Software | No Subscription",
+    "description": "The most complete osteopathy practice management software. 240+ features, 100% offline, lifetime license from €550. Free 3-month trial.",
+    "ogTitle": "OsteoLocal — Your practice deserves better than a subscription",
+    "ogDescription": "Patients, calendar, invoicing, advanced analytics — installed on your computer. Your data stays with you. Forever."
+  },
+  "nav": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "security": "Security",
+    "faq": "FAQ",
+    "cta": "Free trial"
+  },
+  "hero": {
+    "title": "Your osteopathy practice deserves software that matches.",
+    "titleAccent": "No subscription.",
+    "subtitle": "The most complete practice management software on the market — patients, calendar, invoicing, advanced analytics — all installed on your computer. Your data stays with you. Forever.",
+    "cta": "Try free for 3 months",
+    "ctaSecondary": "See the demo",
+    "proof": [
+      "240+ features",
+      "100% offline",
+      "Lifetime license from €550",
+      "Free data migration"
+    ]
+  },
+  "problem": {
+    "title": "You're paying a monthly subscription…",
+    "titleAccent": "for software you don't own.",
+    "saas": {
+      "heading": "With a typical SaaS",
+      "points": [
+        "€20–40/month, every month, forever",
+        "Your data sits on someone else's server",
+        "Stop paying, lose everything",
+        "Limited features unless you \"upgrade\"",
+        "Depends on an Internet connection",
+        "No control over forced updates",
+        "Price increases without notice"
+      ]
+    },
+    "osteolocal": {
+      "heading": "With OsteoLocal",
+      "points": [
+        "One-time €550 — the software is yours forever",
+        "Your data stays on YOUR computer",
+        "No subscription, no renewal",
+        "ALL features included from day 1",
+        "Works 100% offline",
+        "You decide when to update",
+        "Price never increases after purchase"
+      ]
+    }
+  },
+  "calculator": {
+    "title": "Do the math.",
+    "titleAccent": "It's simple arithmetic.",
+    "periods": [
+      { "label": "1 year", "years": 1 },
+      { "label": "3 years", "years": 3 },
+      { "label": "5 years", "years": 5 },
+      { "label": "10 years", "years": 10 },
+      { "label": "20 years", "years": 20 },
+      { "label": "30 years", "years": 30 }
+    ],
+    "saasLabel": "SaaS subscription",
+    "osteoLabel": "OsteoLocal",
+    "perMonth": "/month",
+    "savingsPrefix": "You save",
+    "savingsSuffix": "over",
+    "years": "years",
+    "callout": "That's the equivalent of {count} free consultations.",
+    "footnote": "Comparison based on an average SaaS subscription at €20/month. Some software charges €30–50/month."
+  },
+  "features": {
+    "title": "A complete professional tool.",
+    "titleAccent": "Not a toy.",
+    "subtitle": "Over 240 built-in features. Zero paid add-ons.",
+    "cards": [
+      {
+        "icon": "lucide:users",
+        "title": "Complete patient records",
+        "description": "Detailed patient file with medical history, allergies, contraindications, medications (BDPM database), pathologies (ICD-10 codes), and full consultation history.",
+        "points": ["Instant search (fuzzy search)", "Advanced filters and auto-segmentation", "One-click duplicate merge", "Anonymous mode for demos"]
+      },
+      {
+        "icon": "lucide:calendar-days",
+        "title": "Smart calendar",
+        "description": "Four views (day, week, month, rolling agenda), drag & drop, recurring appointments, conflict detection.",
+        "points": ["Drag & drop with snap-to-grid", "Recurring appointments (daily, weekly, monthly)", "Automatic conflict detection", "Availability blocks and reusable templates"]
+      },
+      {
+        "icon": "lucide:stethoscope",
+        "title": "Real-time session capture",
+        "description": "Integrated capture panel in the patient profile. Chief complaint, pain before/after (VAS scale), clinical exam, treatment — all without leaving the file.",
+        "points": ["Interactive VAS scale (0–10)", "Rich text editor with drug mentions", "Auto-sync to patient record", "Session timeline"]
+      },
+      {
+        "icon": "lucide:receipt",
+        "title": "Professional invoicing",
+        "description": "Full invoice lifecycle: auto-creation, payment tracking, credit notes, reminders, and PDF generation.",
+        "points": ["Auto-generated invoice at session end", "Customizable numbering", "Credit notes / refunds", "Overdue tracking with alerts"]
+      },
+      {
+        "icon": "lucide:bar-chart-3",
+        "title": "Analytical dashboard",
+        "description": "8 analysis tabs, from practice health score to cross-insights by profession, sport, age — with predictions.",
+        "points": ["Practice health score", "Retention, acquisition funnel, LTV", "Revenue heatmap by day and hour", "Multi-dimensional smart insights"]
+      },
+      {
+        "icon": "lucide:folder-open",
+        "title": "Integrated document management",
+        "description": "Drag & drop upload, categorization, full-text search, directly linked to patient records.",
+        "points": ["Drag & drop upload (max 50 MB/file)", "Folder categorization", "Full-text search", "Mobile upload"]
+      },
+      {
+        "icon": "lucide:shield-check",
+        "title": "Your data, your peace of mind",
+        "description": "Automatic backup, optional encryption, verified restoration, complete audit log.",
+        "points": ["Scheduled automatic backup", "Optional backup encryption", "Integrity-checked restoration", "Complete audit log"]
+      },
+      {
+        "icon": "lucide:pill",
+        "title": "BDPM & ICD-10 built-in",
+        "description": "French Public Drug Database with auto-sync, ICD-10 codes, ROME nomenclature — all local.",
+        "points": ["BDPM with automatic sync", "Instant search with autocomplete", "ICD-10 pathology codes", "All local — zero network requests"]
+      }
+    ],
+    "alsoTitle": "And also…",
+    "also": [
+      { "icon": "lucide:map", "text": "Interactive patient map" },
+      { "icon": "lucide:moon", "text": "Dark / light / auto theme" },
+      { "icon": "lucide:languages", "text": "Bilingual French / English" },
+      { "icon": "lucide:rocket", "text": "Step-by-step onboarding wizard" },
+      { "icon": "lucide:keyboard", "text": "Full keyboard shortcuts" },
+      { "icon": "lucide:download", "text": "Automatic updates" }
+    ]
+  },
+  "pricing": {
+    "title": "An investment,",
+    "titleAccent": "not an expense.",
+    "lifetime": {
+      "badge": "Recommended",
+      "title": "Lifetime license",
+      "subtitle": "For established practitioners",
+      "price": "550",
+      "currency": "€",
+      "features": [
+        "All features, no exceptions",
+        "Free updates included",
+        "Email support",
+        "Free data migration",
+        "3-month free trial"
+      ],
+      "cta": "Start free trial",
+      "footnote": "Pays for itself in under 3 years vs. a €20/month subscription"
+    },
+    "loa": {
+      "title": "Lease-to-Own",
+      "subtitle": "For new graduates",
+      "description": "Just starting out? No need to invest everything on day one.",
+      "plans": [
+        { "name": "Essential", "price": "8", "duration": "84 months (7 years)", "total": "672" },
+        { "name": "Comfort", "price": "15", "duration": "48 months (4 years)", "total": "720" },
+        { "name": "Accelerated", "price": "25", "duration": "30 months (2.5 years)", "total": "750" },
+        { "name": "Express", "price": "50", "duration": "14 months (~1 year)", "total": "700" }
+      ],
+      "perMonth": "€/month",
+      "totalLabel": "Total cost:",
+      "durationLabel": "Duration:",
+      "features": [
+        "You own the software at the end of the plan",
+        "All features from day one",
+        "Same updates, same support",
+        "Switch to full license anytime (amount deducted)",
+        "3-month free trial before first payment"
+      ],
+      "cta": "Choose this plan",
+      "footnote": "Always cheaper than SaaS — and at the end, it's yours"
+    },
+    "loaExplainer": "Lease-to-Own (LOA): like a car lease, you pay monthly and at the end of the plan, the software is permanently yours. Unlike a SaaS subscription, every euro paid brings you closer to ownership.",
+    "trialCallout": "3 months free. No credit card. No commitment."
+  },
+  "migration": {
+    "title": "Already using another software?",
+    "titleAccent": "We handle everything.",
+    "description": "Switching to OsteoLocal doesn't mean starting from scratch. Our team migrates your data for free from your current software.",
+    "data": [
+      "Patients: names, contacts, medical history, documents",
+      "Consultation history: notes, chief complaints, treatments",
+      "Invoices: billing and payment history",
+      "Calendar: future appointments transferred"
+    ],
+    "compatible": "Osteo2ls, Doctogest, Ostéolib, Vetocom, and any software with CSV/Excel export.",
+    "compatibleLabel": "Compatible software:",
+    "steps": [
+      { "title": "Export", "description": "your data from your current software (we'll guide you)" },
+      { "title": "Send us", "description": "the file securely" },
+      { "title": "We import", "description": "and verify with you" },
+      { "title": "You're set", "description": "— your history is intact" }
+    ],
+    "cta": "Request my free migration"
+  },
+  "security": {
+    "title": "Your patient data",
+    "titleAccent": "never leaves your computer.",
+    "points": [
+      { "icon": "lucide:hard-drive", "title": "100% local", "description": "SQLite database on your hard drive, no remote server" },
+      { "icon": "lucide:wifi-off", "title": "No cloud account", "description": "The software works even without Internet" },
+      { "icon": "lucide:lock", "title": "Backup encryption", "description": "Optional for transfers" },
+      { "icon": "lucide:eye-off", "title": "Anonymous mode", "description": "Built-in for demos and training" },
+      { "icon": "lucide:scroll-text", "title": "Audit log", "description": "Every action is tracked" },
+      { "icon": "lucide:shield", "title": "GDPR compliant", "description": "Your data is under your exclusive control" }
+    ],
+    "quote": "With cloud software, your patient data sits on someone else's server. With OsteoLocal, it's in your office. Period."
+  },
+  "testimonials": {
+    "title": "What practitioners",
+    "titleAccent": "are saying",
+    "items": [
+      {
+        "quote": "I used a competing SaaS for 6 years. It cost me over €1,400. OsteoLocal does everything it did, and much more, for a fraction of the price. And my data is finally mine.",
+        "name": "Dr. Martin L.",
+        "city": "Paris",
+        "role": "Practitioner for 12 years"
+      },
+      {
+        "quote": "Coming out of school, I didn't have €500 to spend on software. The €15/month plan let me start smoothly. In 3 years, it'll be mine.",
+        "name": "Camille R.",
+        "city": "Lyon",
+        "role": "Recent graduate"
+      },
+      {
+        "quote": "The analytics dashboard is stunning — practice health score, retention tracking, chief complaint analysis by profession. No other osteopathy software offers this level of detail.",
+        "name": "Julien T.",
+        "city": "Bordeaux",
+        "role": "Experienced practitioner"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently asked",
+    "titleAccent": "questions",
+    "items": [
+      {
+        "q": "Can I try before buying?",
+        "a": "Yes, 3 months free, no credit card, no commitment. Download, install, use. If you like it, buy it."
+      },
+      {
+        "q": "What happens after the 3-month trial?",
+        "a": "The software continues in read-only mode for 30 additional days so you can export your data. You don't lose anything."
+      },
+      {
+        "q": "What if I need help installing?",
+        "a": "The onboarding wizard guides you step by step: practice info, session types, pricing, email, backup. Ready in 10 minutes."
+      },
+      {
+        "q": "Does it work on Mac and Windows?",
+        "a": "Yes. OsteoLocal works on Windows, macOS, and Linux."
+      },
+      {
+        "q": "Is my data secure?",
+        "a": "Your data is stored locally on your computer in a SQLite database. No data travels over the Internet. Backups can be encrypted. You have total control."
+      },
+      {
+        "q": "Will I receive updates?",
+        "a": "Yes. Updates are free and you're notified automatically. You choose when to install."
+      },
+      {
+        "q": "I'm on a lease-to-own plan and want the full license?",
+        "a": "The amount already paid is deducted from the €550. You simply pay the difference."
+      },
+      {
+        "q": "Can I use the software on multiple computers?",
+        "a": "The license is tied to one workstation. For a second one (e.g., home + office), contact us for a discounted multi-seat license."
+      },
+      {
+        "q": "What if my computer breaks down?",
+        "a": "Your backups (automatic and manual) let you restore all your data on a new machine in minutes. The license is transferable."
+      },
+      {
+        "q": "Which software do you migrate from?",
+        "a": "Any software that allows CSV or Excel export. We also support specific formats from Osteo2ls, Doctogest, Ostéolib. Migration is free and assisted."
+      },
+      {
+        "q": "What if I'm not satisfied?",
+        "a": "The trial is free for 3 months. If it's not for you, uninstall. No fees, no penalty, no questions asked."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Ready to take back control",
+    "titleAccent": "of your practice?",
+    "subtitle": "3 months free. All features. No commitment.",
+    "cta": "Download OsteoLocal for free",
+    "ctaSecondary": "Or contact us for a personalized demo",
+    "reassurance": [
+      "3 months free — no credit card",
+      "Free migration from your current software",
+      "100% offline — your data stays with you",
+      "Responsive email support",
+      "Satisfied or you leave — no commitment"
+    ]
+  },
+  "footer": {
+    "tagline": "Made with care for osteopaths, by people who understand your profession.",
+    "columns": {
+      "product": {
+        "title": "Product",
+        "links": [
+          { "label": "Features", "href": "/en/#features" },
+          { "label": "Pricing", "href": "/en/#pricing" },
+          { "label": "Security", "href": "/en/#security" },
+          { "label": "FAQ", "href": "/en/#faq" }
+        ]
+      },
+      "support": {
+        "title": "Support",
+        "links": [
+          { "label": "Contact", "href": "mailto:contact@osteolocal.fr" },
+          { "label": "Free migration", "href": "/en/#migration" }
+        ]
+      },
+      "legal": {
+        "title": "Legal",
+        "links": [
+          { "label": "Legal notice", "href": "/mentions-legales" },
+          { "label": "Terms", "href": "/cgv" },
+          { "label": "Privacy policy", "href": "/politique-confidentialite" }
+        ]
+      }
+    },
+    "copyright": "© {year} OsteoLocal. All rights reserved."
+  }
+}

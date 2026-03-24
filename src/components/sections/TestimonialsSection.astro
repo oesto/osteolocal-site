@@ -1,0 +1,55 @@
+---
+import { t, tObj } from '../../utils/i18n';
+
+interface Props {
+  lang: 'fr' | 'en';
+}
+
+const { lang } = Astro.props;
+const items = (tObj(lang, 'testimonials.items') as { quote: string; name: string; city: string; role: string }[]) || [];
+
+const initials = items.map((item) => item.name.split(' ').map((w) => w[0]).filter(Boolean).join('').slice(0, 2));
+const colors = ['var(--color-primary-600)', '#B8860B', '#6366f1'];
+---
+
+<section class="py-24 md:py-32 section-warm">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="section-divider"></div>
+      <h2 class="text-[28px] md:text-[44px] font-bold leading-[1.08]" style="font-family: var(--font-display); color: var(--color-text-heading);">
+        {t(lang, 'testimonials.title')}
+        <span style="color: var(--color-primary-600);"> {t(lang, 'testimonials.titleAccent')}</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      {items.map((item, i) => (
+        <div data-animate="fade-up" style={`--stagger-index: ${i};`} class="rounded-3xl p-8 flex flex-col shadow-card transition-all hover:shadow-card-hover" style="background: #fff; border: 1px solid var(--color-warm-200);">
+          <!-- Stars -->
+          <div class="flex gap-0.5 mb-5">
+            {[...Array(5)].map(() => (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--color-accent-warm)">
+                <path d="M8 1l2.2 4.5 5 .7-3.6 3.5.8 4.9L8 12.3 3.6 14.6l.8-4.9L.8 6.2l5-.7z"/>
+              </svg>
+            ))}
+          </div>
+
+          <p class="text-[15px] italic leading-[1.75] flex-1 mb-6" style="color: var(--color-text-body);">
+            &ldquo;{item.quote}&rdquo;
+          </p>
+
+          <div class="flex items-center gap-3 pt-5" style="border-top: 1px solid var(--color-warm-200);">
+            <!-- Avatar -->
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0" style={`background: ${colors[i]};`}>
+              {initials[i]}
+            </div>
+            <div>
+              <p class="text-sm font-bold" style="color: var(--color-text-heading);">{item.name}</p>
+              <p class="text-[11px]" style="color: var(--color-text-muted);">{item.role} — {item.city}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

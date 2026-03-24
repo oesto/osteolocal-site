@@ -1,0 +1,136 @@
+---
+import { t, tObj } from '../../utils/i18n';
+
+interface Props {
+  lang: 'fr' | 'en';
+}
+
+const { lang } = Astro.props;
+const periods = (tObj(lang, 'calculator.periods') as { label: string; years: number }[]) || [];
+---
+
+<section class="relative py-24 md:py-32 overflow-hidden" style="background: linear-gradient(175deg, #0f0f11 0%, var(--color-dark-900) 40%, #0c1f1d 100%);">
+  <!-- Decorative glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full opacity-[0.06]" style="background: radial-gradient(circle, var(--color-primary-500), transparent 60%);"></div>
+
+  <div class="relative z-10 max-w-[1200px] mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="section-divider" style="background: linear-gradient(90deg, var(--color-primary-400), var(--color-accent-warm));"></div>
+      <h2 class="text-[28px] md:text-[44px] font-bold leading-[1.08]" style="font-family: var(--font-display); color: var(--color-text-on-dark);">
+        {t(lang, 'calculator.title')}
+        <span style="color: var(--color-primary-400);"> {t(lang, 'calculator.titleAccent')}</span>
+      </h2>
+    </div>
+
+    <div data-animate="fade-up" class="max-w-3xl mx-auto">
+      <!-- Period tabs -->
+      <div class="flex flex-wrap justify-center gap-2 mb-14" id="calc-tabs">
+        {periods.map((period, i) => (
+          <button
+            data-years={period.years}
+            class:list={[
+              'calc-tab px-5 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer',
+              i === 3 ? 'active' : '',
+            ]}
+            style={i === 3
+              ? 'background: var(--color-primary-600); color: #fff; box-shadow: 0 4px 16px rgba(13,148,136,0.3);'
+              : 'background: rgba(255,255,255,0.06); color: #a1a1aa; border: 1px solid rgba(255,255,255,0.08);'
+            }
+          >
+            {period.label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Cost comparison — side by side -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+        <!-- SaaS cost -->
+        <div class="rounded-2xl p-8 md:p-10 text-center" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);">
+          <p class="text-xs font-semibold uppercase tracking-wider mb-1" style="color: #71717a;">{t(lang, 'calculator.saasLabel')}</p>
+          <p class="text-xs mb-6" style="color: #52525b;">20 €{t(lang, 'calculator.perMonth')}</p>
+          <div class="font-bold" style="font-family: var(--font-display);">
+            <span id="saas-cost" class="text-[56px] md:text-[72px] leading-none" style="color: #ef4444;">2 400</span>
+            <span class="text-xl ml-1" style="color: #ef4444aa;">€</span>
+          </div>
+        </div>
+
+        <!-- OsteoLocal cost -->
+        <div class="relative rounded-2xl p-8 md:p-10 text-center" style="background: rgba(13,148,136,0.08); border: 2px solid var(--color-primary-600); box-shadow: 0 0 40px rgba(13,148,136,0.1);">
+          <p class="text-xs font-semibold uppercase tracking-wider mb-1" style="color: var(--color-primary-300);">{t(lang, 'calculator.osteoLabel')}</p>
+          <p class="text-xs mb-6" style="color: #52525b;">{lang === 'fr' ? 'Licence à vie' : 'Lifetime license'}</p>
+          <div class="font-bold" style="font-family: var(--font-display);">
+            <span class="text-[56px] md:text-[72px] leading-none" style="color: var(--color-primary-400);">550</span>
+            <span class="text-xl ml-1" style="color: var(--color-primary-400); opacity: 0.6;">€</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Savings callout — premium warm style -->
+      <div id="savings-callout" class="text-center rounded-2xl p-7" style="background: linear-gradient(135deg, rgba(184,134,11,0.1), rgba(184,134,11,0.05)); border: 1px solid rgba(184,134,11,0.2);">
+        <p class="text-xl md:text-2xl font-bold" style="color: var(--color-accent-warm); font-family: var(--font-display);">
+          {t(lang, 'calculator.savingsPrefix')} <span id="savings-amount">1 850</span> € {t(lang, 'calculator.savingsSuffix')} <span id="savings-years">10</span> {t(lang, 'calculator.years')}
+        </p>
+        <p class="text-sm mt-2" style="color: #a1a1aa;" id="savings-consult"></p>
+      </div>
+
+      <p class="text-center text-xs mt-8 max-w-lg mx-auto leading-relaxed" style="color: #52525b;">
+        {t(lang, 'calculator.footnote')}
+      </p>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ lang }}>
+  const MONTHLY = 20;
+  const OSTEO = 550;
+  const CONSULT_PRICE = 50;
+
+  const saasCostEl = document.getElementById('saas-cost');
+  const savingsAmountEl = document.getElementById('savings-amount');
+  const savingsYearsEl = document.getElementById('savings-years');
+  const savingsConsultEl = document.getElementById('savings-consult');
+  const tabs = document.querySelectorAll('.calc-tab');
+  const calloutTemplate = lang === 'fr'
+    ? "C'est l'équivalent de {count} consultations offertes."
+    : "That's the equivalent of {count} free consultations.";
+
+  function formatNum(n) {
+    return n.toLocaleString('fr-FR');
+  }
+
+  function animateCounter(el, target) {
+    const start = performance.now();
+    const duration = 900;
+    function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+    function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      el.textContent = formatNum(Math.round(target * easeOutExpo(t)));
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function update(years) {
+    const saasCost = MONTHLY * 12 * years;
+    const savings = Math.max(0, saasCost - OSTEO);
+    const consults = Math.floor(savings / CONSULT_PRICE);
+
+    animateCounter(saasCostEl, saasCost);
+    savingsAmountEl.textContent = formatNum(savings);
+    savingsYearsEl.textContent = String(years);
+    savingsConsultEl.textContent = savings > 0
+      ? calloutTemplate.replace('{count}', String(consults))
+      : '';
+
+    tabs.forEach((tab) => {
+      const isActive = Number(tab.dataset.years) === years;
+      tab.style.background = isActive ? 'var(--color-primary-600)' : 'rgba(255,255,255,0.06)';
+      tab.style.color = isActive ? '#fff' : '#a1a1aa';
+      tab.style.border = isActive ? 'none' : '1px solid rgba(255,255,255,0.08)';
+      tab.style.boxShadow = isActive ? '0 4px 16px rgba(13,148,136,0.3)' : 'none';
+    });
+  }
+
+  tabs.forEach((tab) => tab.addEventListener('click', () => update(Number(tab.dataset.years))));
+  update(10);
+</script>

@@ -1,0 +1,49 @@
+---
+import { t, tObj } from '../../utils/i18n';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  lang: 'fr' | 'en';
+}
+
+const { lang } = Astro.props;
+const points = (tObj(lang, 'security.points') as { icon: string; title: string; description: string }[]) || [];
+---
+
+<section id="securite" class="relative py-24 md:py-32 overflow-hidden" style="background: linear-gradient(175deg, var(--color-dark-900) 0%, #0c1f1d 60%, var(--color-dark-900) 100%);">
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-[0.04]" style="background: radial-gradient(circle, var(--color-primary-400), transparent 70%);"></div>
+
+  <div class="relative z-10 max-w-[1200px] mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="section-divider" style="background: linear-gradient(90deg, var(--color-primary-400), var(--color-primary-600));"></div>
+      <h2 class="text-[28px] md:text-[44px] font-bold leading-[1.08]" style="font-family: var(--font-display); color: var(--color-text-on-dark);">
+        {t(lang, 'security.title')}
+        <span style="color: var(--color-primary-400);"> {t(lang, 'security.titleAccent')}</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 max-w-4xl mx-auto mb-16">
+      {points.map((point, i) => (
+        <div data-animate="fade-up" style={`--stagger-index: ${i};`} class="rounded-2xl p-7 transition-all hover:translate-y-[-2px]" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);">
+          <div class="w-11 h-11 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(13,148,136,0.1);">
+            <Icon name={point.icon} class="w-5 h-5" style="color: var(--color-primary-400);" />
+          </div>
+          <h3 class="text-[15px] font-bold mb-2" style="color: var(--color-text-on-dark); font-family: var(--font-body);">
+            {point.title}
+          </h3>
+          <p class="text-[13px] leading-relaxed" style="color: #a1a1aa;">
+            {point.description}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <div data-animate="fade-up" class="max-w-2xl mx-auto text-center">
+      <div class="rounded-2xl p-8" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
+        <blockquote class="text-lg md:text-xl italic leading-relaxed" style="color: #d4d4d8; font-family: var(--font-display);">
+          &ldquo;{t(lang, 'security.quote')}&rdquo;
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>

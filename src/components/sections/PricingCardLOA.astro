@@ -1,0 +1,109 @@
+---
+import { t, tObj, tArray } from '../../utils/i18n';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  lang: 'fr' | 'en';
+}
+
+const { lang } = Astro.props;
+const plans = (tObj(lang, 'pricing.loa.plans') as { name: string; price: string; duration: string; total: string }[]) || [];
+const features = tArray(lang, 'pricing.loa.features');
+---
+
+<div class="relative rounded-3xl p-9 md:p-10 h-full flex flex-col overflow-hidden" style="background: #fff; border: 1px solid var(--color-warm-200); box-shadow: 0 4px 24px rgba(0,0,0,0.06);">
+  <div class="text-center mb-6">
+    <h3 class="text-xl font-bold mb-1" style="font-family: var(--font-display); color: var(--color-text-heading);">
+      {t(lang, 'pricing.loa.title')}
+    </h3>
+    <p class="text-sm" style="color: var(--color-text-muted);">{t(lang, 'pricing.loa.subtitle')}</p>
+  </div>
+
+  <p class="text-sm text-center mb-6 leading-relaxed" style="color: var(--color-text-body);">
+    {t(lang, 'pricing.loa.description')}
+  </p>
+
+  <!-- Plan tabs — 2x2 grid -->
+  <div class="grid grid-cols-2 gap-2.5 mb-5" id="loa-tabs">
+    {plans.map((plan, i) => (
+      <button
+        data-plan={i}
+        data-price={plan.price}
+        data-duration={plan.duration}
+        data-total={plan.total}
+        data-name={plan.name}
+        class:list={[
+          'loa-tab px-3 py-3 rounded-xl text-center transition-all cursor-pointer',
+          i === 0 ? 'active' : '',
+        ]}
+        style={i === 0
+          ? 'background: var(--color-primary-50); border: 1.5px solid var(--color-primary-400); box-shadow: 0 2px 8px rgba(13,148,136,0.1);'
+          : 'background: var(--color-warm-50); border: 1.5px solid var(--color-warm-200);'
+        }
+      >
+        <span class="block text-lg font-bold" style={i === 0 ? 'color: var(--color-primary-700);' : 'color: var(--color-text-heading);'}>{plan.price}€</span>
+        <span class="block text-[10px] font-medium" style="color: var(--color-text-muted);">{t(lang, 'pricing.loa.perMonth')}</span>
+      </button>
+    ))}
+  </div>
+
+  <!-- Selected plan details -->
+  <div class="text-center mb-6 p-4 rounded-xl" style="background: var(--color-warm-50); border: 1px solid var(--color-warm-200);">
+    <p class="text-sm font-bold mb-1" style="color: var(--color-text-heading);">
+      <span id="loa-plan-name">{plans[0]?.name}</span>
+    </p>
+    <p class="text-xs" style="color: var(--color-text-muted);">
+      {t(lang, 'pricing.loa.durationLabel')} <span id="loa-plan-duration">{plans[0]?.duration}</span>
+    </p>
+    <p class="text-xs mt-0.5" style="color: var(--color-text-muted);">
+      {t(lang, 'pricing.loa.totalLabel')} <span id="loa-plan-total" class="font-bold" style="color: var(--color-text-heading);">{plans[0]?.total} €</span>
+    </p>
+  </div>
+
+  <!-- Features -->
+  <ul class="space-y-3.5 mb-9 flex-1">
+    {features.map((feature) => (
+      <li class="flex items-start gap-3 text-[14px] leading-relaxed" style="color: var(--color-text-body);">
+        <span class="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0" style="background: var(--color-primary-50);">
+          <Icon name="lucide:check" class="w-3 h-3" style="color: var(--color-primary-600);" />
+        </span>
+        {feature}
+      </li>
+    ))}
+  </ul>
+
+  <!-- CTA -->
+  <a href="https://osteolocal.lemonsqueezy.com/checkout/buy/loa" class="lemonsqueezy-button flex items-center justify-center gap-2 w-full px-6 py-4 rounded-2xl text-base font-semibold transition-all hover:shadow-card-hover" style="background: #fff; color: var(--color-primary-700); border: 2px solid var(--color-primary-500); box-shadow: 0 2px 8px rgba(13,148,136,0.1);">
+    {t(lang, 'pricing.loa.cta')}
+  </a>
+
+  <p class="text-[11px] text-center mt-4 leading-relaxed" style="color: var(--color-text-muted);">
+    {t(lang, 'pricing.loa.footnote')}
+  </p>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.loa-tab');
+  const nameEl = document.getElementById('loa-plan-name');
+  const durationEl = document.getElementById('loa-plan-duration');
+  const totalEl = document.getElementById('loa-plan-total');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => {
+        const el = t as HTMLElement;
+        const isActive = t === tab;
+        el.style.background = isActive ? 'var(--color-primary-50)' : 'var(--color-warm-50)';
+        el.style.border = isActive ? '1.5px solid var(--color-primary-400)' : '1.5px solid var(--color-warm-200)';
+        el.style.boxShadow = isActive ? '0 2px 8px rgba(13,148,136,0.1)' : 'none';
+        const priceSpan = el.querySelector('span');
+        if (priceSpan) priceSpan.style.color = isActive ? 'var(--color-primary-700)' : 'var(--color-text-heading)';
+      });
+
+      const el = tab as HTMLElement;
+      if (nameEl) nameEl.textContent = el.dataset.name || '';
+      if (durationEl) durationEl.textContent = el.dataset.duration || '';
+      if (totalEl) totalEl.textContent = (el.dataset.total || '') + ' €';
+    });
+  });
+</script>

@@ -1,0 +1,80 @@
+---
+import { t, tArray } from '../../utils/i18n';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  lang: 'fr' | 'en';
+}
+
+const { lang } = Astro.props;
+const saasPoints = tArray(lang, 'problem.saas.points');
+const osteoPoints = tArray(lang, 'problem.osteolocal.points');
+---
+
+<section class="py-24 md:py-32 section-light">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="section-divider"></div>
+      <h2 class="text-[28px] md:text-[42px] font-bold leading-[1.1]" style="font-family: var(--font-display); color: var(--color-text-heading);">
+        {t(lang, 'problem.title')}<br />
+        <span style="color: var(--color-primary-600);">{t(lang, 'problem.titleAccent')}</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <!-- SaaS — the pain -->
+      <div
+        data-animate="slide-left"
+        class="relative rounded-3xl p-8 md:p-10 overflow-hidden"
+        style="background: linear-gradient(145deg, #fef2f2 0%, #fff5f5 100%); border: 1px solid #fecaca;"
+      >
+        <div class="absolute top-0 left-0 right-0 h-1" style="background: linear-gradient(90deg, #ef4444, #dc2626);"></div>
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(239,68,68,0.1);">
+            <Icon name="lucide:cloud-off" class="w-5 h-5" style="color: #dc2626;" />
+          </div>
+          <h3 class="text-lg font-bold" style="font-family: var(--font-body); color: #991b1b;">
+            {t(lang, 'problem.saas.heading')}
+          </h3>
+        </div>
+        <ul class="space-y-4">
+          {saasPoints.map((point) => (
+            <li class="flex items-start gap-3 text-[15px] leading-relaxed" style="color: #7f1d1d;">
+              <span class="mt-1.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0" style="background: rgba(239,68,68,0.1);">
+                <Icon name="lucide:x" class="w-3 h-3" style="color: #dc2626;" />
+              </span>
+              {point}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- OsteoLocal — the gain -->
+      <div
+        data-animate="slide-right"
+        class="relative rounded-3xl p-8 md:p-10 overflow-hidden"
+        style="background: linear-gradient(145deg, #f0fdf4 0%, #ecfdf5 100%); border: 1px solid #bbf7d0;"
+      >
+        <div class="absolute top-0 left-0 right-0 h-1" style="background: linear-gradient(90deg, var(--color-primary-500), var(--color-primary-600));"></div>
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(13,148,136,0.1);">
+            <Icon name="lucide:check-circle" class="w-5 h-5" style="color: var(--color-primary-600);" />
+          </div>
+          <h3 class="text-lg font-bold" style="font-family: var(--font-body); color: var(--color-primary-800);">
+            {t(lang, 'problem.osteolocal.heading')}
+          </h3>
+        </div>
+        <ul class="space-y-4">
+          {osteoPoints.map((point) => (
+            <li class="flex items-start gap-3 text-[15px] leading-relaxed" style="color: var(--color-primary-900);">
+              <span class="mt-1.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0" style="background: rgba(13,148,136,0.12);">
+                <Icon name="lucide:check" class="w-3 h-3" style="color: var(--color-primary-600);" />
+              </span>
+              {point}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

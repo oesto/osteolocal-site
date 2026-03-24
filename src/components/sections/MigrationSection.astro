@@ -1,0 +1,84 @@
+---
+import { t, tArray, tObj } from '../../utils/i18n';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  lang: 'fr' | 'en';
+}
+
+const { lang } = Astro.props;
+const dataItems = tArray(lang, 'migration.data');
+const steps = (tObj(lang, 'migration.steps') as { title: string; description: string }[]) || [];
+---
+
+<section id="migration" class="py-24 md:py-32 section-warm">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="section-divider"></div>
+      <h2 class="text-[28px] md:text-[44px] font-bold leading-[1.08]" style="font-family: var(--font-display); color: var(--color-text-heading);">
+        {t(lang, 'migration.title')}
+        <span style="color: var(--color-primary-600);"> {t(lang, 'migration.titleAccent')}</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-14 max-w-4xl mx-auto">
+      <!-- Left: content -->
+      <div data-animate="slide-left">
+        <p class="text-[15px] leading-[1.8] mb-8" style="color: var(--color-text-body);">
+          {t(lang, 'migration.description')}
+        </p>
+
+        <ul class="space-y-3 mb-8">
+          {dataItems.map((item) => (
+            <li class="flex items-start gap-3 text-[14px] leading-relaxed" style="color: var(--color-text-body);">
+              <span class="mt-1 w-5 h-5 rounded-full flex items-center justify-center shrink-0" style="background: var(--color-primary-50);">
+                <Icon name="lucide:check" class="w-3 h-3" style="color: var(--color-primary-600);" />
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <div class="rounded-2xl p-5 mb-8 shadow-card" style="background: #fff; border: 1px solid var(--color-warm-200);">
+          <p class="text-xs font-bold uppercase tracking-wider mb-2" style="color: var(--color-text-muted);">
+            {t(lang, 'migration.compatibleLabel')}
+          </p>
+          <p class="text-sm leading-relaxed" style="color: var(--color-text-body);">
+            {t(lang, 'migration.compatible')}
+          </p>
+        </div>
+
+        <a href="mailto:contact@osteolocal.fr" class="btn-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-semibold">
+          {t(lang, 'migration.cta')}
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M3 8h10M9 4l4 4-4 4" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Right: timeline -->
+      <div data-animate="slide-right" class="flex flex-col">
+        {steps.map((step, i) => (
+          <div class="flex gap-5">
+            <div class="flex flex-col items-center">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-sm font-bold text-white shrink-0 shadow-card" style="background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700));">
+                {i + 1}
+              </div>
+              {i < steps.length - 1 && (
+                <div class="w-0.5 flex-1 my-3 rounded-full" style="background: linear-gradient(to bottom, var(--color-primary-300), var(--color-primary-100));"></div>
+              )}
+            </div>
+            <div class="pb-10">
+              <h4 class="text-base font-bold mb-1.5" style="color: var(--color-text-heading); font-family: var(--font-body);">
+                {step.title}
+              </h4>
+              <p class="text-sm leading-relaxed" style="color: var(--color-text-muted);">
+                {step.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

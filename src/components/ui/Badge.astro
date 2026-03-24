@@ -1,0 +1,18 @@
+---
+interface Props {
+  variant?: 'teal' | 'warm' | 'dark';
+  class?: string;
+}
+
+const { variant = 'teal', class: className = '' } = Astro.props;
+
+const styles: Record<string, string> = {
+  teal: 'background: var(--color-primary-50); color: var(--color-primary-700); border: 1px solid var(--color-primary-200);',
+  warm: 'background: #FEF3C7; color: var(--color-accent-warm); border: 1px solid #FDE68A;',
+  dark: 'background: var(--color-dark-800); color: var(--color-text-on-dark); border: 1px solid #3f3f46;',
+};
+---
+
+<span class:list={['inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full', className]} style={styles[variant]}>
+  <slot />
+</span>
